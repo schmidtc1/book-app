@@ -22,9 +22,7 @@ public class HomeController {
 
     @GetMapping("/")
     public ModelAndView index() {
-        ModelAndView modelAndView = new ModelAndView("index");
         bookService.save();
-        // modelAndView.addObject("books", bookService.getAll());
         return findPaginated(1);
     }
 
@@ -35,6 +33,13 @@ public class HomeController {
         Page<Book> page = bookService.findPaginated(pageNo, pageSize);
         List<Book> listBooks = page.getContent();
         ModelAndView modelAndView = new ModelAndView("index");
+        int current = page.getNumber() + 3;
+        int begin = Math.max(1, current - 5);
+        int end = Math.min(begin + 6, page.getTotalPages());
+        modelAndView.addObject("current", current);
+        modelAndView.addObject("begin", begin);
+        modelAndView.addObject("end", end);
+
         modelAndView.addObject("currentPage", pageNo);
         modelAndView.addObject("totalPages", page.getTotalPages());
         modelAndView.addObject("totalItems", page.getTotalElements());

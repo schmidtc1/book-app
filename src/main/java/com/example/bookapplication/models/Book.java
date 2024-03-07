@@ -4,8 +4,6 @@ import java.io.Serializable;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -16,12 +14,8 @@ import lombok.Setter;
 @Entity
 @Table(name = "books")
 public class Book implements Serializable {
-    
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
 
+    @Id
     @Column(name = "isbn")
     private String isbn;
 
@@ -55,7 +49,7 @@ public class Book implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("Book{id=%d, isbn='%s', title='%s', author='%s', published=%d, publisher='%s'}",
-        id, isbn, title, author, published, publisher);
+        return String.format("Book{isbn='%s', title='%s', author='%s', published=%d, publisher='%s'}",
+        isbn, title, author, published, publisher);
     }
 }

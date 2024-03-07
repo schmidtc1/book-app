@@ -15,7 +15,7 @@
                 <thead>
                     <tr>
                         <th>Actions</th>
-                        <th>Id</th>
+                        <th>Isbn</th>
                         <th>Title</th>
                         <th>Author</th>
                     </tr>
@@ -24,13 +24,13 @@
                     <tr th:each="book : ${listBooks}">
                         <td>
                             <div class="btn btn-group-sm" role="group">
-                                <a class="btn btn-info" th:href="@{/edit/{id}(id=${book.id})}">
+                                <a class="btn btn-info" th:href="@{/edit/{isbn}(isbn=${book.isbn})}">
                                     <i class="bi bi-pencil-fill"></i> Edit</a>
-                                <a class="btn btn-danger" th:href="@{/delete/{id}(id=${book.id})}">
+                                <a class="btn btn-danger" th:href="@{/delete/{isbn}(isbn=${book.isbn})}">
                                     <i class="bi bi-trash-fill"></i> Delete</a>
                             </div>
                         </td>
-                        <td th:text="${book.id}"></td>
+                        <td th:text="${book.isbn}"></td>
                         <td th:text="${book.title}"></td>
                         <td th:text="${book.author}"></td>
                     </tr>
@@ -42,10 +42,15 @@
                     <div class="col-sm-2">
                         Total Rows: [[${totalItems}]]
                     </div>
-                    <div class="col-sm-1">
+                    <div class="page-item col-sm-1" th:each="i: ${#numbers.sequence(begin, end)} ">
+                        <a th:if="${current - 2 != i}" th:href="@{'/page/' + ${i}}" th:text="${i}"
+                        th:classappend="${current}==${i}?'activepagenumber':''"></a>
+                        <span th:unless="${current - 2 != i}" th:text="${i}"></span>
+                    </div>
+                    <!-- <div class="col-sm-1">
                         <span th:each="i: ${#numbers.sequence(1, totalPages)}">
                             <a th:if="${currentPage != i}" th:href="@{'/page/' + ${i}}">[[${i}]]</a>
-                            <span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;
+                            <span th:unless="${currentPage != i}">[[${i}]]</span>
                         </span>
                     </div>
                     <div class="col-sm-1">
@@ -56,7 +61,7 @@
                     <div class="col-sm-1">
                         <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}}">Last</a>
                         <span th:unless="${currentPage < totalPages}">Last</span>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
