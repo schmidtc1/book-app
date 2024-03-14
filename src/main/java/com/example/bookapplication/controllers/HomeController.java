@@ -33,6 +33,8 @@ public class HomeController {
         Page<Book> page = bookService.findPaginated(pageNo, pageSize);
         List<Book> listBooks = page.getContent();
         ModelAndView modelAndView = new ModelAndView("index");
+        
+        // https://stackoverflow.com/questions/48940262/pagination-with-spring-boot-and-thymeleaf
         int current = page.getNumber() + 3;
         int begin = Math.max(1, current - 5);
         int end = Math.min(begin + 6, page.getTotalPages());
