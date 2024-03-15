@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,16 +19,23 @@ public class HomeController {
 
     private BookService bookService;
 
+    private boolean saved = false;
+
     @GetMapping("/")
     public ModelAndView index() {
-        bookService.save();
+        if (!saved) {
+            bookService.save();
+        }
         return findPaginated(1);
     }
 
     @GetMapping("/page/{pageNo}")
     public ModelAndView findPaginated(@PathVariable (value = "pageNo") int pageNo) {
         int pageSize = 5;
-        
+        if (!saved) {
+            bookService.save();
+        }
+
         Page<Book> page = bookService.findPaginated(pageNo, pageSize);
         List<Book> listBooks = page.getContent();
         ModelAndView modelAndView = new ModelAndView("index");

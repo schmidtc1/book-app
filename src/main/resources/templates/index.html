@@ -5,34 +5,40 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.2/css/bootstrap.min.css}">
+        <link rel="stylesheet" href="styles.css">
     </head>
     <body>
         <div class="container">
             <h1>Spring Boot Book App</h1>
             <hr />
-
+            
+            <div class="filter">
+                <button>Title</button>
+                <button>Author</button>
+                <button>Date published</button>
+                <input class="w-50" type="text" placeholder="Search...">
+            </div>
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>Actions</th>
-                        <th>Isbn</th>
-                        <th>Title</th>
-                        <th>Author</th>
+                        <th class="w-25 p-3">Isbn</th>
+                        <th class="w-25 p-3">Title</th>
+                        <th class="w-25 p-3">Author</th>
+                        <th class="w-25 p-3">Date published</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="book : ${listBooks}">
-                        <td>
-                            <div class="btn btn-group-sm" role="group">
-                                <a class="btn btn-info" th:href="@{/edit/{isbn}(isbn=${book.isbn})}">
-                                    <i class="bi bi-pencil-fill"></i> Edit</a>
+                        <!-- <div class="btn btn-group-sm" role="group">
+                            <a class="btn btn-info" th:href="@{/edit/{isbn}(isbn=${book.isbn})}">
+                                <i class="bi bi-pencil-fill"></i> Edit</a>
                                 <a class="btn btn-danger" th:href="@{/delete/{isbn}(isbn=${book.isbn})}">
                                     <i class="bi bi-trash-fill"></i> Delete</a>
-                            </div>
-                        </td>
+                                </div> -->
                         <td th:text="${book.isbn}"></td>
                         <td th:text="${book.title}"></td>
                         <td th:text="${book.author}"></td>
+                        <td th:text="${book.published}"></td>
                     </tr>
                 </tbody>
             </table>
