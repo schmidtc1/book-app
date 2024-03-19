@@ -25,6 +25,7 @@ public class HomeController {
     public ModelAndView index() {
         if (!saved) {
             bookService.save();
+            saved = true;
         }
         return findPaginated(1);
     }
@@ -34,6 +35,7 @@ public class HomeController {
         int pageSize = 5;
         if (!saved) {
             bookService.save();
+            saved = true;
         }
 
         Page<Book> page = bookService.findPaginated(pageNo, pageSize);

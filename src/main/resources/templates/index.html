@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.2/css/bootstrap.min.css}">
-        <link rel="stylesheet" href="styles.css">
+        <link th:rel="stylesheet" th:href="@{/styles/cssandjs/styles.css}">
     </head>
     <body>
         <div class="container">
@@ -13,18 +13,19 @@
             <hr />
             
             <div class="filter">
-                <button>Title</button>
+                <!-- <button>Title</button>
                 <button>Author</button>
-                <button>Date published</button>
+                <button>Date published</button> -->
                 <input class="w-50" type="text" placeholder="Search...">
+                <button>Search</button>
             </div>
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th class="w-25 p-3">Isbn</th>
-                        <th class="w-25 p-3">Title</th>
-                        <th class="w-25 p-3">Author</th>
-                        <th class="w-25 p-3">Date published</th>
+                        <th class="w-25 p-3"><button>Title</button></th>
+                        <th class="w-25 p-3"><button>Author</button></th>
+                        <th class="w-25 p-3"><button>Date published</button></th>
                     </tr>
                 </thead>
                 <tbody>

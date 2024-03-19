@@ -36,15 +36,10 @@ public class CSVHelper {
         List<Book> books = new ArrayList<Book>();
 
         Iterable<CSVRecord> csvRecords = csvParser.getRecords();
-        for (String name : csvParser.getHeaderNames()) {
-            System.out.println(name);
-        }
         int i = 0;
         for (CSVRecord csvRecord : csvRecords) {
-            if (i > 200) return books;
+            if (i > 20000) return books;
             // Long id, String isbn, String title, String author, Integer published, String publisher
-            // System.out.println(csvRecord.get("Book-Title"));
-            // System.out.println(csvRecord.get("Book-Author"));
             if (!csvRecord.get("ISBN").isEmpty()) {
                 Book book = new Book(
                     csvRecord.get("ISBN"), 
@@ -54,8 +49,8 @@ public class CSVHelper {
                     csvRecord.get("Publisher")
                 );
                 books.add(book);
+                i++;
             }
-            i++;
         }
 
         return books;
