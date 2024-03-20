@@ -43,6 +43,10 @@ public class BookService {
     
     public void save() {
         try {
+            File db = new File("data/books.mb.db");
+            if (db.exists() && !db.isDirectory()) {
+                return;
+            }
             File f = new File("data/updatedbooks.csv");
             InputStream is = new FileInputStream(f);
             List<Book> books = CSVHelper.csvToBooks(is);

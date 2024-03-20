@@ -1,15 +1,13 @@
-/* .filter input[type=text] {
-    float: right;
-    padding: 6px;
-    border: none;
-    margin-top: 8px;
-    margin-right: 16px;
-    font-size: 17px;
-} */
+.filter input[type=text] {
+    border: 1px solid black;
+    border-radius: 3px;
+}
+
+
 
 .filter button {
     background-color: white;
-    border: 2px solid black;
+    border: 1px solid black;
     border-radius: 3px;
     transition-duration: 0.4s;
     cursor: pointer;

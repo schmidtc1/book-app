@@ -32,7 +32,7 @@ public class HomeController {
 
     @GetMapping("/page/{pageNo}")
     public ModelAndView findPaginated(@PathVariable (value = "pageNo") int pageNo) {
-        int pageSize = 5;
+        int pageSize = 10;
         if (!saved) {
             bookService.save();
             saved = true;
