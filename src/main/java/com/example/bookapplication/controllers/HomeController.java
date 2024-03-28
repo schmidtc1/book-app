@@ -7,6 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.bookapplication.models.Book;
@@ -37,9 +39,10 @@ public class HomeController {
             bookService.save();
             saved = true;
         }
-
+        
         Page<Book> page = bookService.findPaginated(pageNo, pageSize);
         List<Book> listBooks = page.getContent();
+        
         ModelAndView modelAndView = new ModelAndView("index");
         
         // https://stackoverflow.com/questions/48940262/pagination-with-spring-boot-and-thymeleaf
@@ -56,5 +59,10 @@ public class HomeController {
 
         modelAndView.addObject("listBooks", listBooks);
         return modelAndView;
+    }
+
+    @RequestMapping("/filter")
+    public void filter() {
+        System.out.println("success");
     }
 }
